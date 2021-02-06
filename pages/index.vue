@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.container
+  div
     h1 Salut
 </template>
 
@@ -8,12 +8,4 @@ export default {}
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 </style>
