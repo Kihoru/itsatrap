@@ -23,6 +23,13 @@ export default {
     ...mapState(["jobs", "loading"])
   },
   mounted() {
+    if (this.$route.query.error) {
+      const error = this.$route.query.error;
+      switch(error) {
+        case "404":
+          this.$message('Job not found');
+      }
+    }
     if (!this.jobs.length) {
       // Set default search
       this.searchJobs({

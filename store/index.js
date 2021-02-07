@@ -45,9 +45,13 @@ const crStore = () => {
       async searchJobById({state, commit}, id) {
         commit('TOGGLE_LOADING', true);
         let url = urlMaker.makeUrl(state.jobBase, id);
-        const res = await axios.get(url);
-        commit('ADD_JOB', res.data);
-        commit('TOGGLE_LOADING', false);
+        try {
+          const res = await axios.get(url);
+          commit('ADD_JOB', res.data);
+          commit('TOGGLE_LOADING', false);
+        } catch(e) {
+          this.$router.push({ path: '/', query: { error: "404"} });
+        }
       },
       toggleLoading({commit}, bool) {
         commit('TOGGLE_LOADING', bool);

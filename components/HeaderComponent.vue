@@ -54,6 +54,12 @@ export default {
         this.$router.go(-1);
       }
       this.searchJobs(this.query);
+
+      // delete possible query params
+      this.$router.replace({
+      ...this.$router.currentRoute,
+        query: {}
+      });
     },
     autocompleteInputsLocation(str, cb) {
       cb(this.savedLocationInputs(str));
