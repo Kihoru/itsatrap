@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils'
+import { shallowMount, config } from '@vue/test-utils'
 import JobComponent from '@/components/JobComponent.vue'
 
 // Adding element ui to avoid components import warnings
@@ -6,6 +6,14 @@ import Vue from 'vue'
 import Element from 'element-ui'
 Vue.use(Element, {})
 
+/* Setup to declare nuxt specific components inside jest */
+Vue.config.silent = true
+config.stubs.nuxt = { template: '<div />' }
+config.stubs['nuxt-link'] = { template: '<a><slot /></a>' }
+config.stubs['no-ssr'] = { template: '<span><slot /></span>' }
+
+
+// Test JobComponent (creation and props)
 describe('JobComponent should mount and be truthy and try props', () => {
   test('is a Vue instance', () => {
     const wrapper = shallowMount(JobComponent, {
