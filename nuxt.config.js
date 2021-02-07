@@ -46,7 +46,8 @@ export default {
   },
 
   proxy: {
-    '/jobs': { target: 'https://jobs.github.com/positions.json', pathRewrite: { '^/jobs': '' } }
+    '/jobs': { target: 'https://jobs.github.com/positions.json', pathRewrite: { '^/jobs': '' } },
+    '/job': { target: 'https://jobs.github.com/positions/', pathRewrite: { '^/job': '' } }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

@@ -1,5 +1,8 @@
 export default {
   makeUrl(base, queryObj) {
+    if (typeof queryObj == "string") {
+      return `${base}/${queryObj}.json`;
+    }
     let lat = queryObj.lat,
         long = queryObj.long,
         pos = queryObj.posField,

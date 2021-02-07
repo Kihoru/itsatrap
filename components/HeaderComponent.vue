@@ -17,7 +17,7 @@
         el-button(style="width: 100%;" type='primary' icon='el-icon-search' @click="search") Search some jobs
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapActions } from "vuex";
 export default {
   data() {
     return {

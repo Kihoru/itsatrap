@@ -11,7 +11,8 @@ const crStore = () => {
 
     /* State */
     state: {
-      apiBase: "/jobs",
+      jobsBase: "/jobs",
+      jobBase: "/job",
       loading: true,
       jobs: [],
       searchInputs: [],
@@ -19,16 +20,25 @@ const crStore = () => {
     },
 
     /* Getters */
-    getters: {},
+    getters: {
+      getJobById(state) {
+        return id => state.jobs.find(j => j.id == id);
+      }
+    },
 
     /* Actions */
     actions: {
       async searchJobs ({state, commit}, queryObj) {
         commit('SAVE_INPUTS', queryObj);
-        let url = urlMaker.makeUrl(state.apiBase, queryObj);
+        let url = urlMaker.makeUrl(state.jobsBase, queryObj);
         const res = await axios.get(url);
         commit('SET_JOBS', res.data);
       },
+      async searchJobById({state, commit}, id) {
+        let url = urlMaker.makeUrl(state.jobBase, id);
+        const res = await axios.get(url);
+        commit('ADD_JOB', res.data);
+      }
     },
 
     /* Mutations */
@@ -37,8 +47,15 @@ const crStore = () => {
         state.jobs = jobs;
         state.loading = false;
       },
+      ADD_JOB(state, job) {
+        let found = state.jobs.find(j => j.id == job.id);
+        if (!found) {
+          state.jobs.push(job);
+        }
+        state.loading = false;
+      },
       SAVE_INPUTS(state, query) {
-        // Here we're savings inputs to show user what he already wrote
+        // Here we're saving inputs to show user what he already searched
         if (query.langField && state.searchInputs.indexOf(query.langField) < 0) {
           state.searchInputs.push(query.langField);
         }
