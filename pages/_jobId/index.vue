@@ -8,7 +8,7 @@
         div.company_logo
           a(:href="job.company_url" target="_blank")
             img(:src="job.company_logo")
-        div.job_content
+        div
           p.description(v-html="job.description")
           el-button(type="primary" round)
             a.apply(target="_blank" :href="getHrefFromApply(job.how_to_apply)") Apply
@@ -55,39 +55,3 @@ export default {
   }
 }
 </script>
-<style>
-  #backtoindex {
-    position: absolute;
-    left: 50px;
-  }
-  .job {
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: 100px;
-  }
-  .company_logo {
-    margin-top: 25px;
-    cursor: pointer;
-  }
-  .company_logo img {
-    max-width: 100%;
-    max-height: 200px;
-  }
-  .job_more {
-    margin-top: 50px;
-    color: grey;
-    font-size: 0.9em;
-    display: flex;
-    justify-content: space-between;
-  }
-  .apply {
-    color: #fff;
-    text-decoration: none;
-  }
-  .description {
-    margin-top: 75px;
-    text-align: justify;
-    line-height: 2em;
-    margin-bottom: 50px;
-  }
-</style>

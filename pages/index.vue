@@ -57,15 +57,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .joblen {
-    color: grey;
-    text-align: right;
-    font-size: 1.2em;
-  }
-  .nothing {
-    text-align: center;
-    font-size: 1.5em;
-  }
-</style>

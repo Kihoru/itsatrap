@@ -47,3 +47,48 @@ body {
 h1, h2, h3, h4, h5 {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+/* === START APP SCSS === */
+
+.joblen {
+  color: grey;
+  text-align: right;
+  font-size: 1.2em;
+}
+.nothing {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.job {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 100px;
+
+  .company_logo {
+    margin-top: 25px;
+    cursor: pointer;
+
+    .company_logo img {
+      max-width: 100%;
+      max-height: 200px;
+    }
+    .description {
+      margin-top: 75px;
+      text-align: justify;
+      line-height: 2em;
+      margin-bottom: 50px;
+    }
+    .job_more {
+      margin-top: 50px;
+      color: grey;
+      font-size: 0.9em;
+      display: flex;
+      justify-content: space-between;
+    }
+    .apply {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
