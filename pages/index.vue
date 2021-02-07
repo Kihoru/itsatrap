@@ -27,7 +27,10 @@ export default {
       const error = this.$route.query.error;
       switch(error) {
         case "404":
-          this.$message('Job not found');
+          this.$message({
+            message: 'Job not found',
+            type: 'error'
+          });
       }
     }
     if (!this.jobs.length) {

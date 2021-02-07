@@ -14,7 +14,12 @@
 <script>
 import { mapActions } from "vuex";
 export default {
-  props: ["job"],
+  props: {
+    job: {
+      type: Object,
+      required: true
+    }
+  },
   methods: {
     ...mapActions(["searchJobs"])
   }
