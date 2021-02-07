@@ -1,7 +1,13 @@
 <template lang="pug">
   div
     el-row(:gutter="20")
-      el-col(v-loading="loading" v-if="jobs.length" style="padding-top: 50px;" :span="12" :offset="6")
+      el-col(
+        v-loading="loading"
+        v-if="jobs.length"
+        style="padding-top: 50px;" 
+        :span="12" 
+        :offset="6"
+      )
         p.joblen {{jobs.length}} job{{jobs.length > 1 ? 's' : ''}} found
         JobComponent(v-for="job in jobs" :job="job" :key="job.id")
       el-col(v-else style="padding-top: 50px;" :span="12" :offset="6")
@@ -30,7 +36,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["searchJobs"])
+    ...mapActions(["searchJobs"]),
+    loadMore() {
+      console.log('LOAD');
+    }
   }
 }
 </script>

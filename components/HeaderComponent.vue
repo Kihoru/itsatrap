@@ -45,6 +45,7 @@ export default {
             this.query.long = p.coords.longitude;
             this.query.posField = 'Position actuelle';
           });
+          this.searchJobs(this.query);
         } catch (error) {
           // Replace with Elementui popups or alert methods
           console.log("You can't access geolocation on your computer, check your settings.")

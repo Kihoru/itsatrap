@@ -15,10 +15,6 @@
 import { mapActions } from "vuex";
 export default {
   props: ["job"],
-  mounted() {
-    // To delete, just to see json schema
-    console.log(this.job);
-  },
   methods: {
     ...mapActions(["searchJobs"])
   }
