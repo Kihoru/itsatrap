@@ -6,36 +6,61 @@
       el-col(:span='8' :offset="8")
           el-row(:gutter="10")
             el-col(:span="12")
-              el-input(placeholder="Paris, New York...")
+              el-input(placeholder="Paris, New York..." v-model="query.posField")
                 i(slot="suffix" class="el-input__icon el-icon-place")
                 el-button.geoloc(slot="append" icon="el-icon-location-outline" @click="geoloc")
             el-col(:span="12")
-              el-input(placeholder="Python, Javascript...")
+              el-input(placeholder="Python, Javascript..." v-model="query.langField")
                 i(slot="suffix" class="el-input__icon el-icon-setting")
     el-row.searchRow(:gutter="20")
       el-col(:span="8" :offset="8")
-        el-button(style="width: 100%;" type='primary' icon='el-icon-search') Search some jobs
+        el-button(style="width: 100%;" type='primary' icon='el-icon-search' @click="searchJobs(query)") Search some jobs
 </template>
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
+  data() {
+    return {
+      query: {
+        lat: "",
+        long: "",
+        posField: "",
+        langField: ""
+      }
+    }
+  },
+  computed: {
+    ...mapState(["jobs"])
+  },
   methods: {
-    data() {
-      return {
-        lat: null,
-        lon: null,
-        posField: null,
-        langFied: null
+    ...mapActions(["searchJobs"]),
+    mounted() {
+      if (!this.jobs.length) {
+        this.searchJobs({
+          lat: "",
+          long: "",
+          posField: "New York",
+          langField: "python"
+        });
       }
     },
     geoloc() {
       if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(p => {
-          this.lat = position.coords.latitude;
-          this.lon = position.coords.longitude;
-        });
+        try {
+          navigator.geolocation.getCurrentPosition(p => {
+            this.query.lat = p.coords.latitude;
+            this.query.long = p.coords.longitude;
+            this.query.posField = 'Position actuelle';
+          });
+        } catch (error) {
+          // Replace with Elementui popups or alert methods
+          console.log("You can't access geolocation on your computer, check your settings.")
+          console.log(error)
+        }
+        // DO SOMETHING WITH LAT & LONG
       } else {
         // Replace with Elementui popups or alert methods
-        alert("You can't access geolocation on your computer, check your settings.")
+        console.log("You can't access geolocation on your computer, check your settings.")
       }
     }
   }
@@ -51,7 +76,6 @@ export default {
 
   .logo {
     color: #fff;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
 
   .searchs{

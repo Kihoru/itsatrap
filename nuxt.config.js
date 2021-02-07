@@ -38,7 +38,16 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    "@nuxtjs/axios"
   ],
+
+  axios: {
+    proxy: true
+  },
+
+  proxy: {
+    '/jobs': { target: 'https://jobs.github.com/positions.json', pathRewrite: { '^/jobs': '' } }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
