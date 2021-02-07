@@ -23,6 +23,12 @@ const crStore = () => {
     getters: {
       getJobById(state) {
         return id => state.jobs.find(j => j.id == id);
+      },
+      savedLocationInputs: state => str => {
+        return state.locationInputs.filter(i => i.indexOf(str) > -1);
+      },
+      savedDescriptionInputs: state => str => {
+        return state.searchInputs.filter(i => i.indexOf(str) > -1);
       }
     },
 
@@ -55,6 +61,7 @@ const crStore = () => {
         state.loading = false;
       },
       SAVE_INPUTS(state, query) {
+        console.log("saving inputs", query);
         // Here we're saving inputs to show user what he already searched
         if (query.langField && state.searchInputs.indexOf(query.langField) < 0) {
           state.searchInputs.push(query.langField);
@@ -62,6 +69,8 @@ const crStore = () => {
         if (query.posField && state.locationInputs.indexOf(query.posField) < 0) {
           state.locationInputs.push(query.posField);
         }
+
+        console.log(state);
       }
     }
   });

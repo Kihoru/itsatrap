@@ -1,7 +1,9 @@
 <template lang="pug">
   div.job(v-loading="loading")
     el-row(v-if="job")
-      el-col(:span="12" :offset="6")
+      el-col(:span="2")
+        el-button(type="primary" @click="backToIndex" icon="el-icon-back")
+      el-col(:span="12" :offset="4")
         h1 {{job.company}} - {{job.title}}
         div.company_logo
           a(:href="job.company_url" target="_blank")
@@ -35,6 +37,9 @@ export default {
     getJob(id) {
       this.searchJobById(id);
     },
+    backToIndex() {
+      this.$router.go(-1);
+    },
     getHrefFromApply(html) {
       let element = document.createElement('template');
       element.innerHTML = html.trim();
@@ -52,6 +57,10 @@ export default {
 </script>
 
 <style>
+  #backtoindex {
+    position: absolute;
+    left: 50px;
+  }
   .job {
     text-align: center;
     margin-top: 50px;
