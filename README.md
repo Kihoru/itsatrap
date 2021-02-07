@@ -6,7 +6,8 @@
 # install dependencies
 $ npm install
 
-# if you can't run the project with those dependencies, it might be a problem with webpack and sass loader latest versions. Try to delete node_modules, package-lock.json an run :
+# if you can't run the project with those dependencies, it might be a problem with webpack and sass loader latest versions.
+# Try to delete node_modules, package-lock.json an run :
 $ npm i --legacy-peer-deps
 # More informations : 
 # https://github.com/nuxt/nuxt.js/issues/8277
