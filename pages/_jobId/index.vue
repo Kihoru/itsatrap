@@ -55,7 +55,6 @@ export default {
   }
 }
 </script>
-
 <style>
   #backtoindex {
     position: absolute;

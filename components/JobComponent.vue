@@ -12,16 +12,12 @@
           p {{job.created_at}}
 </template>
 <script>
-import { mapActions } from "vuex";
 export default {
   props: {
     job: {
       type: Object,
       required: true
     }
-  },
-  methods: {
-    ...mapActions(["searchJobs"])
   }
 }
 </script>

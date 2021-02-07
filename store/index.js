@@ -38,13 +38,19 @@ const crStore = () => {
         commit('TOGGLE_LOADING', true);
         commit('SAVE_INPUTS', queryObj);
         let url = urlMaker.makeUrl(state.jobsBase, queryObj);
-        const res = await axios.get(url);
-        commit('SET_JOBS', res.data);
-        commit('TOGGLE_LOADING', false);
+
+        try {
+          const res = await axios.get(url);
+          commit('SET_JOBS', res.data);
+          commit('TOGGLE_LOADING', false);
+        } catch(e) {
+          this.$router.push({ path: '/', query: { error: "504"} });
+        }
       },
       async searchJobById({state, commit}, id) {
         commit('TOGGLE_LOADING', true);
         let url = urlMaker.makeUrl(state.jobBase, id);
+
         try {
           const res = await axios.get(url);
           commit('ADD_JOB', res.data);

@@ -31,6 +31,13 @@ export default {
             message: 'Job not found',
             type: 'error'
           });
+          break;
+        case "504":
+          this.$message({
+            message: 'Bad gateway',
+            type: 'error'
+          });
+          break;
       }
     }
     if (!this.jobs.length) {
