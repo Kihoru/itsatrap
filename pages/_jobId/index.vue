@@ -61,6 +61,10 @@ export default {
     margin-top: 25px;
     cursor: pointer;
   }
+  .company_logo img {
+    max-width: 100%;
+    max-height: 200px;
+  }
   .job_more {
     margin-top: 50px;
     color: grey;

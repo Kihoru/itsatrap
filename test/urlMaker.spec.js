@@ -31,4 +31,27 @@ describe('Testing urlMaker plain js method', () => {
 
     expect(url).toBe("/test?lat=123&long=abc&description=nodejs");
   })
+
+  test('Test url maker with only keyword', () => {
+    const json = {
+            lat: "",
+            long: "",
+            posField: "",
+            langField: "nodejs"
+          },
+          url = urlMaker.makeUrl('/test', json);
+    
+    expect(url).toBe("/test?search=nodejs")
+  })
+
+  test('Test url maker without any args', () => {
+    const json = {
+            lat: "",
+            long: "",
+            posField: "",
+            langfield: ""
+          },
+          url = urlMaker.makeUrl('/test', json);
+    expect(url).toBe("/test?")
+  })
 })

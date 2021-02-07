@@ -5,7 +5,7 @@
         img.logo(:src="job.company_logo")
       el-col(:span="16")
         h2
-          a(:href="'/'+job.id") {{job.company}} - {{job.title}}
+          NuxtLink(:to="job.id") {{job.company}} - {{job.title}}
         div.content(v-html="job.description.substr(0, 400) + '...'")
         div.location
           p {{job.location}} - {{job.type}}

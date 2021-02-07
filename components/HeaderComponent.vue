@@ -1,7 +1,8 @@
 <template lang="pug">
   div.header
     div.logo
-      h1 MyJobs.io
+      h1
+        NuxtLink(to="/") MyJobs.io
     el-row.searchs(:gutter="20")
       el-col(:span='8' :offset="8")
           el-row(:gutter="10")
@@ -68,8 +69,9 @@ export default {
     padding: 50px;
   }
 
-  .logo {
+  .logo h1 a {
     color: #fff;
+    text-decoration: none;
   }
 
   .searchs{
