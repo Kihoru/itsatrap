@@ -67,24 +67,30 @@ export default {
     autocompleteInputsDescription(str, cb) {
       cb(this.savedDescriptionInputs(str));
     },
+    setGeolocationData(position) {
+      this.query.lat = position.coords.latitude;
+      this.query.long = position.coords.longitude;
+      this.query.posField = 'Position actuelle';
+      this.searchJobs(this.query);
+    },
+    geolocError() {
+      this.$message({
+        message: "Can't find your position",
+        type: 'error'
+      });
+    },
     geoloc() {
       if ("geolocation" in navigator) {
-        try {
-          navigator.geolocation.getCurrentPosition(p => {
-            this.query.lat = p.coords.latitude;
-            this.query.long = p.coords.longitude;
-            this.query.posField = 'Position actuelle';
-          });
-          this.searchJobs(this.query);
-        } catch (error) {
-          // Replace with Elementui popups or alert methods
-          console.log("You can't access geolocation on your computer, check your settings.")
-          console.log(error)
-        }
-        // DO SOMETHING WITH LAT & LONG
+        navigator.geolocation.getCurrentPosition(
+          this.setGeolocationData,
+          this.geolocError,
+          {timeout: 8000}
+        );
       } else {
-        // Replace with Elementui popups or alert methods
-        console.log("You can't access geolocation on your computer, check your settings.")
+        this.$message({
+          message: "We can't access geolocation on your computer, check your settings.",
+          type: 'error'
+        });
       }
     }
   }
