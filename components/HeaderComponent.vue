@@ -14,7 +14,7 @@
                 i(slot="suffix" class="el-input__icon el-icon-setting")
     el-row.searchRow(:gutter="20")
       el-col(:span="8" :offset="8")
-        el-button(style="width: 100%;" type='primary' icon='el-icon-search' @click="searchJobs(query)") Search some jobs
+        el-button(style="width: 100%;" type='primary' icon='el-icon-search' @click="search") Search some jobs
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
@@ -31,6 +31,12 @@ export default {
   },
   methods: {
     ...mapActions(["searchJobs"]),
+    search() {
+      if (this.$route.params.jobId) {
+        this.$router.go(-1);
+      }
+      this.searchJobs(this.query);
+    },
     geoloc() {
       if ("geolocation" in navigator) {
         try {
