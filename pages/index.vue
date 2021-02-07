@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    el-row(:gutter="20")
+    el-row
       el-col(
         v-loading="loading"
         v-if="jobs.length"
