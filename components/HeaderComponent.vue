@@ -29,21 +29,8 @@ export default {
       }
     }
   },
-  computed: {
-    ...mapState(["jobs"])
-  },
   methods: {
     ...mapActions(["searchJobs"]),
-    mounted() {
-      if (!this.jobs.length) {
-        this.searchJobs({
-          lat: "",
-          long: "",
-          posField: "New York",
-          langField: "python"
-        });
-      }
-    },
     geoloc() {
       if ("geolocation" in navigator) {
         try {

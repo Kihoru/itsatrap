@@ -2,7 +2,7 @@
   div.job
     el-row(:gutter="20")
       el-col(:span="8")
-        img(style="width: 75%;" :src="job.company_logo")
+        img.logo(:src="job.company_logo")
       el-col(:span="16")
         h2
           a(:href="'/'+job.id") {{job.company}} - {{job.title}}
@@ -31,6 +31,10 @@ export default {
 }
 .job h2 {
   padding-bottom: 10px;
+}
+.logo {
+  max-width: 75%;
+  max-height: 200px;
 }
 .job h2 a {
   color: rgb(70, 70, 70);

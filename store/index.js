@@ -12,13 +12,10 @@ const crStore = () => {
     /* State */
     state: {
       apiBase: "/jobs",
+      loading: true,
       jobs: [],
       searchInputs: [],
-      locationInputs: [],
-      currentSearch: {
-        location: [],
-        keywords: []
-      }
+      locationInputs: []
     },
 
     /* Getters */
@@ -27,6 +24,7 @@ const crStore = () => {
     /* Actions */
     actions: {
       async searchJobs ({state, commit}, queryObj) {
+        commit('SAVE_INPUTS', queryObj);
         let url = urlMaker.makeUrl(state.apiBase, queryObj);
         const res = await axios.get(url);
         commit('SET_JOBS', res.data);
@@ -37,6 +35,16 @@ const crStore = () => {
     mutations: {
       SET_JOBS(state, jobs) {
         state.jobs = jobs;
+        state.loading = false;
+      },
+      SAVE_INPUTS(state, query) {
+        // Here we're savings inputs to show user what he already wrote
+        if (query.langField && state.searchInputs.indexOf(query.langField) < 0) {
+          state.searchInputs.push(query.langField);
+        }
+        if (query.posField && state.locationInputs.indexOf(query.posField) < 0) {
+          state.locationInputs.push(query.posField);
+        }
       }
     }
   });
