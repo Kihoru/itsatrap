@@ -32,14 +32,11 @@ export default {
         langField: "python"
       });
     } else {
-      this.loading = false;
+      this.toggleLoading(false);
     }
   },
   methods: {
-    ...mapActions(["searchJobs"]),
-    loadMore() {
-      console.log('LOAD');
-    }
+    ...mapActions(["searchJobs", "toggleLoading"])
   }
 }
 </script>
